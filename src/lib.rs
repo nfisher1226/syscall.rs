@@ -96,6 +96,11 @@ pub mod platform;
 #[path="platform/freebsd-x86_64/mod.rs"]
 pub mod platform;
 
+#[cfg(all(target_os = "netbsd",
+          target_arch = "x86_64"))]
+#[path="platform/netbsd-x86_64/mod.rs"]
+pub mod platform;
+
 #[cfg(all(target_os = "macos",
           target_arch = "x86_64"))]
 #[path="platform/macos-x86_64/mod.rs"]

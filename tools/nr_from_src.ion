@@ -1,0 +1,12 @@
+#!/usr/bin/env ion
+# automatically generates nr.rs from the NetBSD header `syscall.h`
+# located at <topsrcdir>/sys/sys/syscall.h
+#
+# usage: nr_from_src.ion <path_to_syscall.h> > nr.rs
+
+for ln in @lines($(grep '#define' @args[1] | expand))
+    let sc = @split($ln)[1]
+    let sc = $to_uppercase($sc[4..])
+    let n = @split($ln)[2]
+    echo "pub const $sc: usize = $n;"
+end
